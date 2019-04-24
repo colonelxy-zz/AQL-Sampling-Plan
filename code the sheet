@@ -1,0 +1,33 @@
+# Sampling type
+	# Creat the sampling type dropdown list
+		# After creating a list of the sampling types in a separate column S, set your cell of interest to F6 then go to Data, Data 		Validation,Allow list then select the list created earlier as your source. With this, you will have created a dropdown list 		of 	the sampling types.
+
+# Table heading
+	# In cell C9, input the formular below:
+
+		="Acceptable Quality Level (AQL) - " &D6
+
+# Lot/Batch size
+	# To create a drop down list of Lot/Batch sizes, follow the process above (2) but use the list on I10:I24 as your source. This 		is from the AQL table 1 for lot sizes and Inspection levels.
+	
+# AQL level
+	# A drop down list for the AQL can be created by selcting source data from K28:AA28 on the AQL table 2
+
+# Inspection Level
+	# Create the inspection level drop downlist from J9:P9 on AQL table 1
+
+# Sample Size
+	# Generate the sample size using he following formular:
+
+		=IFERROR(INDEX($J$29:$J$44,MATCH($G$13,$I$29:$I$44,0)), "")
+
+	#We use IFERROR to prevent it from showing #N/A when the first cells above it are empty.
+
+# Decision
+	#To get a decision use this formula:
+
+		=IFERROR(IF($C$14<=INDEX($K$29:$X$44,MATCH($C$13,$J$29:$J$44,0),MATCH($C$11,$K$28:$X$28,0)),"ACCEPT","REJECT"),"")
+
+	#The cell is further formatted using conditional formating to change color based on either conditions or accept and reject
+
+  #Once all this is done, and you have done the inspection, manually input the defect found in the Defective No. to get a decision whether to accept or reject the lot.
